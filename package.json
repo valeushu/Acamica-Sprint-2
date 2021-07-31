@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "node-env-file": "^0.1.8",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "name": "delilah-resto",
+  "description": "npm i node-env-file",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Valeush/delilah-resto.git"
+  },
+  "author": "Valeria Mancilla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Valeush/delilah-resto/issues"
+  },
+  "homepage": "https://gitlab.com/Valeush/delilah-resto#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
