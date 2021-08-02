@@ -2,20 +2,18 @@ let usuarios = [];
 
 class Usuario {
   constructor(
-    user_name,
-    nombre,
-    apellido,
+    nombre_usuario,
+    nombre_completo,
     email,
-    pass,
+    contraseña,
     telefono,
     dir_envio,
     admin
   ) {
-    this.user_name = user_name;
-    this.nombre = nombre;
-    this.apellido = apellido;
+    this.nombre_usuario = nombre_usuario;
+    this.nombre_completo = nombre_completo;
     this.email = email;
-    this.pass = pass;
+    this.contraseña = contraseña;
     this.telefono = telefono;
     this.dir_envio = dir_envio;
     this.admin = admin === undefined ? false : admin;
@@ -23,7 +21,6 @@ class Usuario {
 }
 
 let admin = new Usuario(
-  "admin",
   "admin",
   null,
   "admin@localhost",
@@ -34,12 +31,24 @@ let admin = new Usuario(
 );
 let user1 = new Usuario(
   "valeush",
-  "Valeria",
-  "Mancilla",
+  "Valeria Mancilla",
   "valeushuaia@hotmail.com",
-  "val123"
+  "val123",
+  "15472626",
+  "maipu 111",
+  false
 );
 
-usuarios = [admin, user1];
+let user2 = new Usuario(
+  "carlitos",
+  "carlos tevez",
+  "tevez444@hotmail.com",
+  "apache",
+  "15474125",
+  "san martin 825",
+  false
+);
+
+usuarios = [admin, user1, user2];
 
 module.exports = { usuarios, Usuario };

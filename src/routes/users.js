@@ -2,7 +2,7 @@ const express = require("express");
 //const morgan = require('morgan')
 const app = express();
 
-const { usuarios } = require("../info.js/usuarios.js");
+const { usuarios } = require("../info.js/users.js");
 const {
   nuevo_usuario,
   existe_usuario,
@@ -10,17 +10,75 @@ const {
   is_admin,
 } = require("./middleware");
 
-//obtiene todos los usuarios
+/**
+ * @swagger
+ * /api/users:
+ *  get:
+ *    summary: Usuarios
+ *    description: Obtiene el listado de todos los usuarios registrados
+ *    responses:
+ *      200:
+ *         description: Listado de usuarios
+ */
 app.get("/", (req, res) => {
   res.json(usuarios);
 });
 
+/**
+ * @swagger
+ * /api/users/registro:
+ *  post:
+ *    summary: Usuarios
+ *    description: Registro de usuario nuevo
+ *    responses:
+ *      200:
+ *         description: Registro de usuario exitoso
+ */
+
 //registro usuario nuevo
 app.post("/registro", nuevo_usuario, (req, res) => {
   const usuario = req.body;
-  console.log(req.body);
-  usuarios.push(usuario);
-  res.send(usuario);
+  console.log(usuario);
+  const id = usuarios.length + 1;
+  const usuarioNuevo = { ...req.body, id };
+  usuarios.push(usuarioNuevo);
+  res.send(usuarios);
+});
+
+/**
+ * @swagger
+ * /login:
+ *  post:
+ *    summary: Login de usuarios.
+ *    description : Login de usuarios.
+ *    consumes:
+ *      - application/json
+ *    parameters:
+ *      - in: body
+ *        name: datos
+ *        description: Email y contraseña de usuario a loguearse
+ *        schema:
+ *          type: object
+ *          required:
+ *            - email
+ *          properties:
+ *            email:
+ *              description: Email de usuario a loguearse.
+ *              type: email
+ *              example: admin@localhost
+ *            password:
+ *              description: Contraseña de usuario a loguearse
+ *              type: string
+ *              example:
+ *    responses:
+ *      200:
+ *       description: Login de usuario exitoso.
+ *      404:
+ *       description: Usuario no encontrado (email y/o contraseña incorrecta)
+ */
+app.post("/login", existe_usuario, function (req, res) {
+  console.log("Login OK: ", req.usuarioIndex);
+  res.json({ index: req.usuarioIndex });
 });
 
 module.exports = app;

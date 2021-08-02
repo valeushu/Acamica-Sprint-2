@@ -13,7 +13,7 @@ const swaggerOptions = {
       version: "1.0.0",
     },
   },
-  apis: ["./src/app.js"],
+  apis: ["./src/app.js", "./src/routes/users.js"],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -21,10 +21,8 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 //settings
 app.set("port", process.env.PORT || 3000);
 app.set("json spaces", 2);
-app.use('/api-docs',
-   swaggerUI.serve,
-   swaggerUI.setup(swaggerDocs));
-
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+//ver swagger en localhost:3000/api-docs
 
 //middlewares
 app.use(morgan("dev"));
@@ -32,11 +30,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //routes
-app.use(require("./routes/index"));
 app.use("/api/users", require("./routes/users"));
+app.use("/api/users", require("./routes/pedidos"));
+app.use("/api/productos", require("./routes/productos"));
 
 //starting the server
 app.listen(3000, () => {
   console.log("escuchando puerto 3000");
 });
-
