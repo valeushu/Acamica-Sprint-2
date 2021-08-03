@@ -24,13 +24,14 @@ app.post("/", is_login_usuario, es_admin, (req, res) => {
   //console.log(req.body.producto);
   producto_nuevo = req.body;
   productos.push(producto_nuevo);
+  console.log("Producto agregado");
   res.send(productos);
 });
 
 //modifica producto
 app.put("/:codigo", is_login_usuario, es_admin, (req, res) => {
   let codigoP = req.params.codigo;
-  console.log(codigoP);
+  console.log(`Codigo de producto: ${codigoP}`);
   const { codigo, nombre, descripcion, precioVenta, stock } = req.body;
   const producto_mod = req.body;
   console.log(producto_mod);
