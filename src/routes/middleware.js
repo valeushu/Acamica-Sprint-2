@@ -1,6 +1,6 @@
-const { Router } = require("express");
-const router = Router();
-const { usuarios } = require("../info.js/users.js");
+//const { Router } = require("express");
+//const router = Router();
+const { usuarios , Usuario} = require("../info.js/users.js");
 
 function nuevo_usuario(req, res, next) {
   username = req.body.nombre_usuario;
@@ -37,7 +37,6 @@ function existe_usuario(req, res, next) {
 }
 
 function es_admin(req, res, next) {
-  
     admin = req.usuario.admin;
     //console.log(admin);
     if (!admin) {
@@ -49,11 +48,14 @@ function es_admin(req, res, next) {
       next();
     }
   }
+ 
 
 function is_login_usuario(req, res, next) {
   id = parseInt(req.query.index);
+  console.log(req.query);
   index = id;
-  usuario = usuario[index];
+  usuario = usuarios[index];
+  //console.log(index);
   if (!usuario) {
     res.status(404).send({ result: "usuario no logueado" });
   } else {
@@ -62,5 +64,6 @@ function is_login_usuario(req, res, next) {
     next();
   }
 }
+
 
 module.exports = { nuevo_usuario, existe_usuario, es_admin, is_login_usuario };

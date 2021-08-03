@@ -12,12 +12,41 @@ const {
   es_admin,
 } = require("./middleware");
 
+//obtiene todos los productos
+app.get("/", is_login_usuario, (req, res) => {
+  res.send(productos);
+});
+
 //carga de producto nuevo por parte del admin
-app.post("/", existe_usuario, es_admin, (req, res) => {
-  console.log("esAdmin!");
-  console.log(req.body.producto);
-  //producto_nuevo = req.body;
-  res.send("admin");
+app.post("/", is_login_usuario, es_admin, (req, res) => {
+  let producto = req.body;
+  console.log(producto);
+  //console.log(req.body.producto);
+  producto_nuevo = req.body;
+  productos.push(producto_nuevo);
+  res.send(productos);
+});
+
+//modifica producto
+app.put("/:codigo", is_login_usuario, es_admin, (req, res) => {
+  let codigoP = req.params.codigo;
+  console.log(codigoP);
+  const { codigo, nombre, descripcion, precioVenta, stock } = req.body;
+  const producto_mod = req.body;
+  console.log(producto_mod);
+  if (nombre || descripcion || precioVenta || stock) {
+    for (var i = 0; i < productos.length; i++) {
+      if (productos[i].codigo == codigoP) {
+        productos[i].codigo = codigo;
+        productos[i].nombre = nombre;
+        productos[i].descripcion = descripcion;
+        productos[i].precioVenta = precioVenta;
+        productos[i].stock = stock;
+      }
+    }
+    console.log("producto modificado");
+    res.send(productos);
+  }
 });
 
 module.exports = app;
