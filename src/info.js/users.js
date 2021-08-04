@@ -1,3 +1,4 @@
+const { productos } = require("./productos");
 let usuarios = [];
 
 class Usuario {
@@ -17,6 +18,15 @@ class Usuario {
     this.telefono = telefono;
     this.dir_envio = dir_envio;
     this.admin = admin === undefined ? false : admin;
+    this.pedidoUsuario = [];
+  }
+
+  addPedido(codigo, cantidad) {
+    let producto_pedido = productos.find(
+      (producto) => producto.codigo == codigo
+    );
+    this.pedidoUsuario.push(producto_pedido);
+    console.log("cantidad:" + cantidad);
   }
 }
 

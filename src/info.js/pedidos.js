@@ -1,4 +1,4 @@
-const { usuarios , user1 , user2 } = require("./users");
+const { usuarios, user1, user2, addPedido } = require("./users");
 const { productos } = require("./productos");
 let pedidos = [];
 
@@ -26,16 +26,17 @@ class Pedido {
         this.productos.push(producto_pedido);
       }
     }
+    
   }
 }
 
 let pedido1 = new Pedido(user1, "EF");
-let pedido2 = new Pedido(user2, "TC");
+//let pedido2 = new Pedido(user2, "TC");
 
 pedido1.addProducto(1, 2);
-pedido2.addProducto(3, 1);
+//pedido2.addProducto(3, 1);
 
 pedidos.push(pedido1);
-pedidos.push(pedido2);
+//pedidos.push(pedido2);
 
 module.exports = { pedidos, Pedido };

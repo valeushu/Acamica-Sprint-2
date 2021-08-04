@@ -31,7 +31,7 @@ app.post("/", is_login_usuario, es_admin, (req, res) => {
 //modifica producto
 app.put("/:codigo", is_login_usuario, es_admin, (req, res) => {
   let codigoP = req.params.codigo;
-  console.log(`Codigo de producto: ${codigoP}`);
+  console.log(`Codigo de producto editado: ${codigoP}`);
   const { codigo, nombre, descripcion, precioVenta, stock } = req.body;
   const producto_mod = req.body;
   console.log(producto_mod);
@@ -48,6 +48,20 @@ app.put("/:codigo", is_login_usuario, es_admin, (req, res) => {
     console.log("producto modificado");
     res.send(productos);
   }
+});
+
+//elimina producto
+app.delete("/:codigo", is_login_usuario, es_admin, (req, res) => {
+  let codigoP = req.params.codigo;
+  console.log(`Codigo de producto eliminado: ${codigoP}`);
+  for (var i = 0; i < productos.length; i++) {
+    if (productos[i].codigo == codigoP) {
+      productos.splice(i, 1);
+    }
+  }
+  console.log("productos en stock: ");
+  console.log(productos);
+  res.send(productos);
 });
 
 module.exports = app;
