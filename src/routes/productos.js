@@ -17,6 +17,7 @@ app.get("/", is_login_usuario, (req, res) => {
   res.send(productos);
 });
 
+
 //carga de producto nuevo por parte del admin
 app.post("/", is_login_usuario, es_admin, (req, res) => {
   let producto = req.body;

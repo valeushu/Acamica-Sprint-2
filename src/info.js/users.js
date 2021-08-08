@@ -18,16 +18,11 @@ class Usuario {
     this.telefono = telefono;
     this.dir_envio = dir_envio;
     this.admin = admin === undefined ? false : admin;
-    this.pedidoUsuario = [];
+    this.borrado = false;
+    
   }
 
-  addPedido(codigo, cantidad) {
-    let producto_pedido = productos.find(
-      (producto) => producto.codigo == codigo
-    );
-    this.pedidoUsuario.push(producto_pedido);
-    console.log("cantidad:" + cantidad);
-  }
+  
 }
 
 let admin = new Usuario(
@@ -39,26 +34,26 @@ let admin = new Usuario(
   null,
   true
 );
-let user1 = new Usuario(
+let usuario1 = new Usuario(
   "valeush",
   "Valeria Mancilla",
   "valeushuaia@hotmail.com",
   "val123",
   "15472626",
   "maipu 111",
-  false
+  
 );
 
-let user2 = new Usuario(
+let usuario2 = new Usuario(
   "carlitos",
   "carlos tevez",
   "tevez444@hotmail.com",
   "apache",
   "15474125",
   "san martin 825",
-  false
+  
 );
 
-usuarios = [admin, user1, user2];
+usuarios = [admin, usuario1, usuario2];
 
 module.exports = { usuarios, Usuario };

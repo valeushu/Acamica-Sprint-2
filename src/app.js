@@ -31,7 +31,7 @@ app.use(express.json());
 
 //routes
 app.use("/api/users", require("./routes/users"));
-app.use("/api/users", require("./routes/pedidos"));
+app.use("/api/pedidos", require("./routes/pedidos"));
 app.use("/api/productos", require("./routes/productos"));
 
 //starting the server
