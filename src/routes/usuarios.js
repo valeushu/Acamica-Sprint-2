@@ -1,6 +1,5 @@
-const express = require("express");
-//const morgan = require('morgan')
-const app = express();
+const { Router } = require("express");
+const router = Router();
 
 const { usuarios } = require("../info.js/users.js");
 const {
@@ -20,8 +19,8 @@ const {
  *      200:
  *         description: Listado de usuarios
  */
-app.get("/", (req, res) => {
-  res.json(usuarios);
+router.get("/", (req, res) => {
+  res.json({ Usuarios: usuarios });
 });
 
 /**
@@ -36,13 +35,13 @@ app.get("/", (req, res) => {
  */
 
 //registro usuario nuevo
-app.post("/registro", nuevo_usuario, (req, res) => {
+router.post("/registro", nuevo_usuario, (req, res) => {
   const usuario = req.body;
   console.log(usuario);
   const id = usuarios.length + 1;
   const usuarioNuevo = { ...req.body, id };
   usuarios.push(usuarioNuevo);
-  res.send(usuarios);
+  res.json({ Usuarios: usuarios });
 });
 
 /**
@@ -76,9 +75,9 @@ app.post("/registro", nuevo_usuario, (req, res) => {
  *      404:
  *       description: Usuario no encontrado (email y/o contraseña incorrecta)
  */
-app.post("/login", existe_usuario, function (req, res) {
+router.post("/login", existe_usuario, function (req, res) {
   console.log("Login OK: ", req.usuarioIndex);
   res.json({ index: req.usuarioIndex });
 });
 
-module.exports = app;
+module.exports = router;

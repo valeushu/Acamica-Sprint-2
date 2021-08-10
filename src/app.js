@@ -13,7 +13,7 @@ const swaggerOptions = {
       version: "1.0.0",
     },
   },
-  apis: ["./src/app.js", "./src/routes/users.js"],
+  apis: ["./src/app.js", "./src/routes/usuarios.js"],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -30,7 +30,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //routes
-app.use("/api/users", require("./routes/users"));
+app.use(require('./routes/index'));
+app.use("/api/usuarios", require("./routes/usuarios"));
+
 app.use("/api/pedidos", require("./routes/pedidos"));
 app.use("/api/productos", require("./routes/productos"));
 

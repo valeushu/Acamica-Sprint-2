@@ -1,44 +1,37 @@
-const express = require("express");
-//const morgan = require('morgan')
-const app = express();
+const { Router } = require("express");
+const router = Router();
 
 const { usuarios, Usuario } = require("../info.js/users.js");
 const { pedidos, Pedido } = require("../info.js/pedidos.js");
 const { productos, Producto } = require("../info.js/productos.js");
-const {
-  existe_usuario,
-  is_login_usuario,
-  es_admin,
-} = require("./middleware.js");
+const { is_login_usuario, es_admin } = require("./middleware.js");
 
-//ver todos los pedidos
-app.get("/", (req, res) => {
-  res.json(pedidos);
+//administradores pueden ver todos los pedidos
+router.get("/", is_login_usuario, es_admin, (req, res) => {
+  res.send(pedidos);
 });
 
 //agregar pedido nuevo
-//TODO ARREGLAR
-app.post("/:codigo/:cantidad", is_login_usuario, (req, res) => {
+//TODO ARREGLAR dir de envio
+router.post("/:codigo", is_login_usuario, (req, res) => {
   let { direccionEnvio, metodoPago } = req.body;
   usuario = req.usuario;
-  console.log(req.body);
   let codigoP = req.params.codigo;
-  let cantidad = req.params.cantidad;
   let pedido_nuevo = new Pedido(usuario.nombre_usuario, metodoPago);
-  pedido_nuevo.addProducto(codigoP, cantidad);
-  //console.log(pedido_nuevo.productos);
-  addPedido(pedido_nuevo);
-  console.log(pedido_nuevo);
-  console.log(usuario);
+  pedido_nuevo.addProducto(codigoP);
 
-  res.json({ pedido_nuevo });
+  pedido_nuevo.setDirEnvio(direccionEnvio);
+
+  addPedido(pedido_nuevo);
+
+  res.json({ Pedido: pedido_nuevo });
 });
 
 //usuarios pueden ver sus pedidos
 
-app.get("/", is_login_usuario, function (req, res) {
+router.get("/", is_login_usuario, function (req, res) {
   //TODO: Refactoring con /pedidos
-  pedidosUsuario = pedidos.find(
+  pedidosUsuario = pedidos.filter(
     (p) => req.usuario.admin || p.usuario == req.usuario.nombre_usuario
   );
   //pedidosUsuario = pedidos.filter(p => req.usuario.admin || (p.usuario == req.usuario.nombre_usuario));
@@ -46,16 +39,34 @@ app.get("/", is_login_usuario, function (req, res) {
   res.send(pedidosUsuario);
 });
 
-//administradores pueden modificar estado del pedido
-//TODO: modificar codigo porque no funciona
-app.put("/:id/", is_login_usuario, es_admin, (req, res) => {
+//administradores pueden modificar estado del pedido por numero de id del pedido
+router.put("/:id/", is_login_usuario, es_admin, (req, res) => {
   //let index = req.usuario_index;
-  let estado_nuevo = req.body;
+  let estado_nuevo = req.body.estado;
   let idPedido = req.params.id;
   pedido_buscado = pedidos.find((elemento) => elemento.id == idPedido);
   //console.log(index);
-  pedido_buscado.estado = estado_nuevo;
+  // pedido_buscado.estado = estado_nuevo;
+  pedido_buscado.setEstado(estado_nuevo);
   res.send(pedido_buscado);
 });
 
-module.exports = app;
+//usuarios pueden modificar pedido (cantidad de productos, eliminar producto,
+//agregar producto,)mientras el estado sea pendiente
+//TODO:
+router.put("/:id/producto/:idP", is_login_usuario, (req, res) => {
+  //let index = req.usuario_index;
+  //let estado_nuevo = req.body.estado;
+  let idPedido = req.params.id;
+  let idProducto = req.params.idP;
+  pedidosUsuario = pedidos.find((elemento) => elemento.id == idPedido);
+  //(pedidosUsuario.productos)
+  //productosMod = pedidos
+  //console.log(index);
+  // pedido_buscado.estado = estado_nuevo;
+  //pedido_buscado.setEstado(estado_nuevo);
+  console.log(pedidosUsuario.productos.length);
+  res.send(pedidosUsuario.productos);
+});
+
+module.exports = router;

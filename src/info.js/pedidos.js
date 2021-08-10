@@ -23,25 +23,23 @@ class Pedido {
     this.montoTotal = 0;
     this.productos = [];
   }
-  setEstado(estado_nuevo){
+
+  setDirEnvio(dir) {
+    this.direccionEnvio = dir;
+  }
+  setEstado(estado_nuevo) {
     this.estado = estado_nuevo;
   }
   setNumero(id) {
     this.id = id;
   }
 
-  addProducto(codigo, cantidad) {
+  addProducto(codigo) {
     let producto_pedido = productos.find(
       (producto) => producto.codigo == codigo
     );
-    if (cantidad != 0) {
-      for (let i = 1; i <= cantidad; i++) {
-        this.productos.push(producto_pedido);
-      }
-    }
-  }
-  setEstado(estado_nuevo) {
-    this.estado = estado_nuevo;
+    this.montoTotal += parseFloat(producto_pedido.precioVenta);
+    this.productos.push(producto_pedido);
   }
 }
 
