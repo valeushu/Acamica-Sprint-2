@@ -1,6 +1,7 @@
 //const { Router } = require("express");
 //const router = Router();
-const { usuarios , Usuario} = require("../info.js/users.js");
+const { usuarios, Usuario } = require("../info.js/users.js");
+const { productos, Producto } = require("../info.js/productos.js");
 
 function nuevo_usuario(req, res, next) {
   username = req.body.nombre_usuario;
@@ -23,7 +24,9 @@ function existe_usuario(req, res, next) {
   nombre_usuario = req.body.nombre_usuario;
   contraseña = req.body.contraseña;
   index = usuarios.findIndex(
-    (elemento) => elemento.nombre_usuario == nombre_usuario && elemento.contraseña == contraseña
+    (elemento) =>
+      elemento.nombre_usuario == nombre_usuario &&
+      elemento.contraseña == contraseña
   );
   console.log(req.body, index);
   if (index === -1) {
@@ -37,18 +40,16 @@ function existe_usuario(req, res, next) {
 }
 
 function es_admin(req, res, next) {
-    admin = req.usuario.admin;
-    //console.log(admin);
-    if (!admin) {
-      res.status(404).send({
-        mensaje: `Usuario no tiene permiso`,
-      });
-    } else {
-
-      next();
-    }
+  admin = req.usuario.admin;
+  //console.log(admin);
+  if (!admin) {
+    res.status(404).send({
+      mensaje: `Usuario no tiene permiso`,
+    });
+  } else {
+    next();
   }
- 
+}
 
 function is_login_usuario(req, res, next) {
   id = parseInt(req.query.index);
@@ -65,5 +66,22 @@ function is_login_usuario(req, res, next) {
   }
 }
 
+function existe_producto(req, res, next) {
+  producto = productos[req.body.indiceProducto];
+  if (!producto) {
+    res.sendStatus(404);
+  } else if (productos[req.body.indiceProducto].stock <= 0) {
+    res.send("Sin stock");
+  } else {
+    next();
+  }
+}
 
-module.exports = { nuevo_usuario, existe_usuario, es_admin, is_login_usuario };
+
+module.exports = {
+  nuevo_usuario,
+  existe_usuario,
+  es_admin,
+  is_login_usuario,
+  existe_producto,
+};

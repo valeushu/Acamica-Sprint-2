@@ -19,7 +19,7 @@ class Pedido {
     this.direccionEnvio = "Tomar del usuario para registro histórico";
     this.fechaHora = new Date();
     // Pendiente => Confirmado => En preparación => Enviado => Entregado
-    this.estado = "Pendiente";
+    this.estado = "pendiente";
     this.montoTotal = 0;
     this.productos = [];
   }
@@ -34,13 +34,11 @@ class Pedido {
     this.id = id;
   }
 
-  addProducto(codigo) {
-    let producto_pedido = productos.find(
-      (producto) => producto.codigo == codigo
-    );
-    this.montoTotal += parseFloat(producto_pedido.precioVenta);
-    this.productos.push(producto_pedido);
-  }
+
+  addProducto(producto) {
+    this.montoTotal += parseFloat(producto.precioVenta);
+    this.productos.push(producto);
+}
 }
 
 //let pedido1 = new Pedido(user1, "EF");
