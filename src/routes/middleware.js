@@ -1,6 +1,5 @@
-//const { Router } = require("express");
-//const router = Router();
 const { usuarios, Usuario } = require("../info.js/users.js");
+const { pedidos, Pedido } = require("../info.js/pedidos.js");
 const { productos, Producto } = require("../info.js/productos.js");
 
 function nuevo_usuario(req, res, next) {
@@ -77,6 +76,25 @@ function existe_producto(req, res, next) {
   }
 }
 
+function existe_pedido(req, res, next) {
+  pedido = pedidos[req.body.indicePedido];
+  if (!pedido) {
+    res.sendStatus(404);
+  } else {
+    next();
+  }
+}
+
+function valida_metodo_pago(req, res, next) {
+  metodo_pago = req.body.metodoPago;
+  if (!metodo_pago in ["EF", "TC", "TD", "MP"]) {
+    return res
+      .status(404)
+      .send({ resultado: `Forma de pago incorrecta: ${metodo_pago}` });
+  } else {
+    next();
+  }
+}
 
 module.exports = {
   nuevo_usuario,
@@ -84,4 +102,6 @@ module.exports = {
   es_admin,
   is_login_usuario,
   existe_producto,
+  existe_pedido,
+  valida_metodo_pago,
 };

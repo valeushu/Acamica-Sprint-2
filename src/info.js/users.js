@@ -19,10 +19,7 @@ class Usuario {
     this.dir_envio = dir_envio;
     this.admin = admin === undefined ? false : admin;
     this.borrado = false;
-    
   }
-
-  
 }
 
 let admin = new Usuario(
@@ -40,8 +37,7 @@ let usuario1 = new Usuario(
   "valeushuaia@hotmail.com",
   "val123",
   "15472626",
-  "maipu 111",
-  
+  "maipu 111"
 );
 
 let usuario2 = new Usuario(
@@ -50,8 +46,7 @@ let usuario2 = new Usuario(
   "tevez444@hotmail.com",
   "apache",
   "15474125",
-  "san martin 825",
-  
+  "san martin 825"
 );
 
 usuarios = [admin, usuario1, usuario2];

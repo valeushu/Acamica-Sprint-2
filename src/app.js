@@ -30,11 +30,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //routes
-app.use(require('./routes/index'));
+app.use(require("./routes/index"));
 app.use("/api/usuarios", require("./routes/usuarios"));
-
 app.use("/api/pedidos", require("./routes/pedidos"));
 app.use("/api/productos", require("./routes/productos"));
+app.use("/api/mediosdePago", require("./routes/pago"));
 
 //starting the server
 app.listen(3000, () => {

@@ -8,6 +8,8 @@ const {
   is_login_usuario,
   es_admin,
   existe_producto,
+  existe_pedido,
+  valida_metodo_pago,
 } = require("./middleware.js");
 
 //administradores pueden ver todos los pedidos
@@ -16,17 +18,52 @@ router.get("/", is_login_usuario, es_admin, (req, res) => {
 });
 
 //agregar pedido nuevo
-//TODO ARREGLAR dir de envio
-router.post("/", is_login_usuario, existe_producto, function (req, res) {
-  let { direccionEnvio, metodoPago, indiceProducto } = req.body;
+
+router.post("/", is_login_usuario, valida_metodo_pago, function (req, res) {
+  let { direccionEnvio, metodoPago } = req.body;
   usuario = req.usuario;
-  let producto = productos[indiceProducto];
-  console.log(producto);
-  let pedido_nuevo = new Pedido(usuario.nombre_usuario, metodoPago);
-  pedido_nuevo.addProducto(producto);
+  //console.log(producto);
+  direccionEnvio = direccionEnvio || usuario.direccionEnvio;
+  pedido_nuevo = new Pedido(usuario.nombre_usuario, metodoPago);
   pedido_nuevo.setDirEnvio(direccionEnvio);
   addPedido(pedido_nuevo);
   res.json({ "Pedido nuevo": pedido_nuevo });
+});
+
+//usuarios pueden agregar productos al pedido
+//TODO:mejorar
+router.post("/productos", is_login_usuario, existe_producto, (req, res) => {
+  const { indicePedido, indiceProducto } = req.body;
+  producto = productos[indiceProducto];
+  pedidoUsuario = pedidos[indicePedido];
+  if (!pedidoUsuario) {
+    res.sendStatus(404);
+  }
+  if (pedidoUsuario.estado != "pendiente") {
+    res.send("Pedido cerrado");
+  }
+  pedidoUsuario.addProducto(producto);
+  res.send({
+    resultado:
+      "Producto agregado correctamente. El pedido sale: " +
+      pedidoUsuario.montoTotal,
+  });
+});
+
+//usuarios pueden eliminar productos del pedido
+//TODO:mejorar
+router.delete("/productos", is_login_usuario, existe_pedido, (req, res) => {
+  const { indicePedido, indiceProducto } = req.body;
+  producto = productos[indiceProducto];
+  pedidoUsuario = pedidos[indicePedido];
+  precio = producto.getPrecioVenta();
+  pedidoUsuario.productos.splice(indiceProducto, 1);
+  pedidoUsuario.setMontoTotal(precio);
+  res.send({
+    resultado:
+      "Producto eliminado correctamente. El pedido sale: " +
+      pedidoUsuario.montoTotal,
+  });
 });
 
 //usuarios pueden ver sus pedidos
@@ -46,23 +83,6 @@ router.put("/estado", is_login_usuario, es_admin, (req, res) => {
   let pedido_buscado = pedidos[indice_pedido];
   pedido_buscado.setEstado(estado_nuevo);
   res.json({ "Pedido modificado": pedido_buscado });
-});
-
-//usuarios pueden modificar pedido (cantidad de productos, eliminar producto,
-//agregar producto,)mientras el estado sea pendiente
-//TODO:mejorar
-router.put("/productos", is_login_usuario, existe_producto, (req, res) => {
-  let indice_pedido = req.body.indicePedido;
-  let producto = productos[req.body.indiceProducto];
-  let pedidosUsuario = pedidos[indice_pedido];
-  if (!pedidosUsuario) {
-    res.sendStatus(404);
-  }
-  if (pedidos[indice_pedido].estado != "pendiente") {
-    res.send("pedido cerrado");
-  }
-  pedidosUsuario.addProducto(producto);
-  res.json({ "Pedido del usuario ": pedidosUsuario.productos });
 });
 
 module.exports = router;

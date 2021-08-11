@@ -6,35 +6,86 @@ const {
   nuevo_usuario,
   existe_usuario,
   is_login_usuario,
-  is_admin,
+  es_admin,
 } = require("./middleware");
 
 /**
  * @swagger
- * /api/users:
+ * /usuarios:
  *  get:
- *    summary: Usuarios
- *    description: Obtiene el listado de todos los usuarios registrados
+ *    tags: [usuarios]
+ *    summary: usuarios
+ *    description: Listado de usuarios
+ *    tag: Usuario
+ *    parameters:
+ *       - in: query
+ *         name: index
+ *         required: true
+ *         description: Index del usuario logueado.
+ *         schema:
+ *           type: integer
+ *           example: -1
  *    responses:
- *      200:
+ *       200:
  *         description: Listado de usuarios
  */
-router.get("/", (req, res) => {
+router.get("/", is_login_usuario, es_admin, (req, res) => {
   res.json({ Usuarios: usuarios });
 });
 
 /**
  * @swagger
- * /api/users/registro:
+ * /registro:
  *  post:
- *    summary: Usuarios
- *    description: Registro de usuario nuevo
+ *    summary: usuarios.
+ *    description : Listado de usuarios.
+ *    consumes:
+ *      - application/json
+ *    parameters:
+ *      - in: body
+ *        name: usuario
+ *        description: usuario  a crear
+ *        schema:
+ *          type: object
+ *          required:
+ *            - nombre_usuario
+ *            - password
+ *            - nombre_completo
+ *            - email
+ *            - direccionEnvio
+ *            - telefono
+ *          properties:
+ *            nombre_usuario:
+ *              description: Nombre del usuario
+ *              type: string
+ *              example: juangomez
+ *            constraseña:
+ *              description: Contraseña
+ *              type: password
+ *              example: 1234
+ *            nombre_completo:
+ *              description: Nombre y apellido del usuario
+ *              type: string
+ *              example: Juan Perez
+ *            email:
+ *              description: Correo electrónico del usuario
+ *              type: email
+ *              example: juangomez@gmail.com
+ *            direccionEnvio:
+ *              description: Dirección de envio
+ *              type: string
+ *              example: La Plata, Calle 7 # 1234
+ *            telefono:
+ *              description: Telefono del usuario
+ *              type: string
+ *              example: 221 1234567
  *    responses:
- *      200:
- *         description: Registro de usuario exitoso
+ *      201:
+ *       description: Usuario registrado
+ *      401:
+ *       description: Usuario no registrado
+ *
  */
-
-//registro usuario nuevo
 router.post("/registro", nuevo_usuario, (req, res) => {
   const usuario = req.body;
   console.log(usuario);
@@ -55,25 +106,25 @@ router.post("/registro", nuevo_usuario, (req, res) => {
  *    parameters:
  *      - in: body
  *        name: datos
- *        description: Email y contraseña de usuario a loguearse
+ *        description: nombre de usuario y contraseña de usuario a loguearse
  *        schema:
  *          type: object
  *          required:
- *            - email
+ *            - nombre_usuario
  *          properties:
- *            email:
- *              description: Email de usuario a loguearse.
- *              type: email
- *              example: admin@localhost
- *            password:
+ *            nombre_usuario:
+ *              description: nombre de usuario a loguearse.
+ *              type: string
+ *              example: pepita
+ *            constraseña:
  *              description: Contraseña de usuario a loguearse
  *              type: string
- *              example:
+ *              example: pep123
  *    responses:
  *      200:
  *       description: Login de usuario exitoso.
  *      404:
- *       description: Usuario no encontrado (email y/o contraseña incorrecta)
+ *       description: Usuario no encontrado (nombre de usuario y/o contraseña incorrecta)
  */
 router.post("/login", existe_usuario, function (req, res) {
   console.log("Login OK: ", req.usuarioIndex);

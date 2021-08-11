@@ -34,11 +34,14 @@ class Pedido {
     this.id = id;
   }
 
-
   addProducto(producto) {
     this.montoTotal += parseFloat(producto.precioVenta);
     this.productos.push(producto);
-}
+  }
+
+  setMontoTotal(precio) {
+    this.montoTotal -= parseFloat(precio);
+  }
 }
 
 //let pedido1 = new Pedido(user1, "EF");
