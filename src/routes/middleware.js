@@ -40,7 +40,6 @@ function existe_usuario(req, res, next) {
 
 function es_admin(req, res, next) {
   admin = req.usuario.admin;
-  //console.log(admin);
   if (!admin) {
     res.status(404).send({
       mensaje: `Usuario no tiene permiso`,
@@ -52,10 +51,8 @@ function es_admin(req, res, next) {
 
 function is_login_usuario(req, res, next) {
   id = parseInt(req.query.index);
-  console.log(req.query);
   index = id;
   usuario = usuarios[index];
-  //console.log(index);
   if (!usuario) {
     res.status(404).send({ result: "usuario no logueado" });
   } else {

@@ -5,8 +5,6 @@ const { usuarios, Usuario } = require("../info.js/users.js");
 
 //carga de middlewares
 const {
-  nuevo_usuario,
-  existe_usuario,
   is_login_usuario,
   es_admin,
 } = require("./middleware");
@@ -20,7 +18,6 @@ router.get("/", is_login_usuario, (req, res) => {
 router.post("/", is_login_usuario, es_admin, (req, res) => {
   producto_nuevo = req.body;
   productos.push(producto_nuevo);
-  console.log("Producto agregado");
   res.json({ "Producto creado": producto_nuevo });
 });
 
