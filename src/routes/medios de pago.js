@@ -13,15 +13,81 @@ const {
   valida_metodo_pago,
 } = require("./middleware.js");
 
+/**
+ * @swagger
+ * /mediosDePago:
+ *  get:
+ *    tags: [medios de pago]
+ *    summary: medios de Pago
+ *    description: Listado de medios de pago 
+ *    parameters:
+ *       - in: query
+ *         name: index
+ *         required: true
+ *         description: Index del usuario logueado.
+ *         schema:
+ *           type: integer
+ *           example: -1
+ *    responses:
+ *       200:
+ *         description: Listado de formas de pago
+ */
+
 router.get("/", is_login_usuario, function (req, res) {
   console.log(mediosDePago);
   res.json({ "Medios de pago": mediosDePago });
 });
 
+/**
+ * @swagger
+ * /admin:
+ *  get:
+ *    tags: [medios de pago]
+ *    summary: medios de pago
+ *    description: Listado de medios de pago
+ *    parameters:
+ *       - in: query
+ *         name: index
+ *         required: true
+ *         description: Index del usuario logueado.
+ *         schema:
+ *           type: integer
+ *           example: -1
+ *    responses:
+ *       200:
+ *         description: Listado de medios de pago
+ */
+
 router.get("/admin", is_login_usuario, es_admin, function (req, res) {
   console.log(mediosDePago);
   res.json({ "Medios de pago": mediosDePago });
 });
+
+/**
+ * @swagger
+ * /:
+ *  post:
+ *    tags: [medios de pago]
+ *    summary: medios de pago
+ *    description: Crea medios de pago
+ *    parameters:
+ *       - in: query
+ *         name: index
+ *         required: true
+ *         description: Index del usuario logueado
+ *         schema:
+ *           type: integer
+ *           example: -1
+ *       - in: body
+ *         codigo: id
+ *         nombre: medio de pago
+ *         description: medio de pago a crear
+ *         schema:
+ *           type: object
+ *    responses:
+ *       200:
+ *         description: medio de pago agregado
+ */
 
 router.post("/", is_login_usuario, es_admin, function (req, res) {
   let medioDePago = req.body;

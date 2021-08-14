@@ -9,11 +9,16 @@ const swaggerUI = require("swagger-ui-express");
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
-      title: "Acamica API",
+      title: "Delilah Restó",
       version: "1.0.0",
     },
   },
-  apis: ["./src/app.js", "./src/routes/usuarios.js"],
+  apis: [
+    "./src/app.js",
+    "./src/routes/usuarios.js",
+    "./src/routes/medios de pago.js",
+    "./src/routes/productos.js",
+  ],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

@@ -11,12 +11,11 @@ const {
 
 /**
  * @swagger
- * /usuarios:
+ * /api/usuarios:
  *  get:
  *    tags: [usuarios]
- *    summary: usuarios
- *    description: Listado de usuarios
- *    tag: Usuario
+ *    summary: Usuarios.
+ *    description : Listado de usuarios.
  *    parameters:
  *       - in: query
  *         name: index
@@ -24,7 +23,7 @@ const {
  *         description: Index del usuario logueado.
  *         schema:
  *           type: integer
- *           example: -1
+ *           example: 0
  *    responses:
  *       200:
  *         description: Listado de usuarios
@@ -35,8 +34,9 @@ router.get("/", is_login_usuario, es_admin, (req, res) => {
 
 /**
  * @swagger
- * /registro:
+ * /api/usuarios/registro:
  *  post:
+ *    tags: [usuarios]
  *    summary: usuarios.
  *    description : Listado de usuarios.
  *    consumes:
@@ -97,8 +97,9 @@ router.post("/registro", nuevo_usuario, (req, res) => {
 
 /**
  * @swagger
- * /login:
+ * /api/usuarios/login:
  *  post:
+ *    tags: [usuarios]
  *    summary: Login de usuarios.
  *    description : Login de usuarios.
  *    consumes:
@@ -111,15 +112,16 @@ router.post("/registro", nuevo_usuario, (req, res) => {
  *          type: object
  *          required:
  *            - nombre_usuario
+ *            - contraseña
  *          properties:
  *            nombre_usuario:
  *              description: nombre de usuario a loguearse.
  *              type: string
- *              example: pepita
- *            constraseña:
+ *              example: valeush
+ *            contraseña:
  *              description: Contraseña de usuario a loguearse
  *              type: string
- *              example: pep123
+ *              example: val123
  *    responses:
  *      200:
  *       description: Login de usuario exitoso.
