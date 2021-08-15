@@ -107,14 +107,14 @@ router.post("/", is_login_usuario, es_admin, (req, res) => {
  *        description: Index del usuario logueado.
  *        schema:
  *          type: integer
- *          example: -1
+ *          example: 0
  *      - in: body
  *        name: producto
- *        description: producto a crear
+ *        description: producto a modificar
  *        schema:
  *          type: object
  *          required:
- *            -indice
+ *            - indice
  *            - codigo
  *            - nombre
  *            - descripcion

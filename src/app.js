@@ -18,6 +18,7 @@ const swaggerOptions = {
     "./src/routes/usuarios.js",
     "./src/routes/medios de pago.js",
     "./src/routes/productos.js",
+    "./src/routes/pedidos.js"
   ],
 };
 
@@ -39,7 +40,7 @@ app.use(require("./routes/index"));
 app.use("/api/usuarios", require("./routes/usuarios"));
 app.use("/api/pedidos", require("./routes/pedidos"));
 app.use("/api/productos", require("./routes/productos"));
-app.use("/api/mediosdePago", require("./routes/medios de pago"));
+app.use("/api/mediosDePago", require("./routes/medios de pago"));
 
 //starting the server
 app.listen(3000, () => {

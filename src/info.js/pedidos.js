@@ -10,12 +10,12 @@ addPedido = (pedido) => {
 };
 
 class Pedido {
-  constructor(usuario, formaDePago) {
+  constructor(usuario, metodoPago) {
     // asignación de numero de pedido
     //pedidos.length == 0 ? this.numero = 1 : this.numero = pedidos[pedidos.length - 1] + 1;
     this.usuario = usuario;
     // EF:Efectivo, TC:Tarjeta de Crédito, TD:Tarjeta de Débito, MP:MercadoPago
-    this.formaDePago = formaDePago;
+    this.metodoPago = metodoPago;
     this.direccionEnvio = "Tomar del usuario para registro histórico";
     this.fechaHora = new Date();
     // Pendiente => Confirmado => En preparación => Enviado => Entregado
@@ -44,13 +44,5 @@ class Pedido {
   }
 }
 
-//let pedido1 = new Pedido(user1, "EF");
-//let pedido2 = new Pedido(user2, "TC");
-
-//pedido1.addProducto(1, 2);
-//pedido2.addProducto(3, 1);
-
-//pedidos.push(pedido1);
-//pedidos.push(pedido2);
 
 module.exports = { pedidos, Pedido };
