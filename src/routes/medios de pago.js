@@ -1,4 +1,4 @@
-const { Router } = require("express");
+/*const { Router } = require("express");
 const router = Router();
 
 const { usuarios, Usuario } = require("../info.js/users.js");
@@ -9,7 +9,7 @@ const {
   existe_producto,
   existe_pedido,
   valida_metodo_pago,
-} = require("./middleware.js");
+} = require("./middleware.js");*/
 
 /**
  * @swagger
@@ -31,10 +31,10 @@ const {
  *         description: Listado de formas de pago
  */
 
-router.get("/", is_login_usuario, function (req, res) {
+/*router.get("/", is_login_usuario, function (req, res) {
   console.log(mediosDePago);
   res.json({ "Medios de pago": mediosDePago });
-});
+});*/
 
 /**
  * @swagger
@@ -56,10 +56,10 @@ router.get("/", is_login_usuario, function (req, res) {
  *         description: Listado de medios de pago
  */
 
-router.get("/admin", is_login_usuario, es_admin, function (req, res) {
+/*router.get("/admin", is_login_usuario, es_admin, function (req, res) {
   console.log(mediosDePago);
   res.json({ "Medios de pago": mediosDePago });
-});
+});*/
 
 /**
  * @swagger
@@ -99,12 +99,12 @@ router.get("/admin", is_login_usuario, es_admin, function (req, res) {
  *         description: medio de pago agregado
  */
 
-router.post("/", is_login_usuario, es_admin, function (req, res) {
+/*router.post("/", is_login_usuario, es_admin, function (req, res) {
   let medioDePago = req.body;
   medioDePagoNueva = new MediosDePago(medioDePago.codigo, medioDePago.nombre);
   mediosDePago.push(medioDePagoNueva);
   res.json({ "Medio de pago agregado": medioDePagoNueva });
-});
+});*/
 
 /**
  * @swagger
@@ -151,12 +151,12 @@ router.post("/", is_login_usuario, es_admin, function (req, res) {
  *
  */
 
-router.put("/", is_login_usuario, es_admin, (req, res) => {
+/*router.put("/", is_login_usuario, es_admin, (req, res) => {
   let indice = req.body.indice;
   mediosDePago[indice].codigo = req.body.codigo;
   mediosDePago[indice].nombre = req.body.nombre;
   res.json({ "Medio de pago modificado": mediosDePago[indice] });
-});
+});*/
 
 /**
  * @swagger
@@ -190,10 +190,10 @@ router.put("/", is_login_usuario, es_admin, (req, res) => {
  *        description: medios de pago eliminado correctamente.
  */
 
-router.delete("/", is_login_usuario, es_admin, (req, res) => {
+/*router.delete("/", is_login_usuario, es_admin, (req, res) => {
   let indice = req.body.indice;
   mediosDePago.splice(indice, 1);
   res.json({ "Medios de pago": mediosDePago });
 });
 
-module.exports = router;
+module.exports = router;*/

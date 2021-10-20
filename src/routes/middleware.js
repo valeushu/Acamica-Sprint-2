@@ -1,4 +1,4 @@
-const { usuarios, Usuario } = require("../info.js/users.js");
+/*const { usuarios, Usuario } = require("../info.js/users.js");
 const { pedidos, Pedido } = require("../info.js/pedidos.js");
 const { productos, Producto } = require("../info.js/productos.js");
 
@@ -101,4 +101,4 @@ module.exports = {
   existe_producto,
   existe_pedido,
   valida_metodo_pago,
-};
+};*/

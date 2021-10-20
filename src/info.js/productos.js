@@ -1,4 +1,4 @@
-let productos = [];
+/*let productos = [];
 
 class Producto {
   constructor(codigo, nombre, descripcion, precioVenta, stock) {
@@ -58,4 +58,4 @@ let ensaladaCesar = new Producto(
 productos = [hamburguesa1, hamburguesa2, hamburguesa3, ensaladaCesar];
 //console.log("Información de productos cargada correctamente.", productos);
 
-module.exports = { productos, Producto };
+module.exports = { productos, Producto };*/

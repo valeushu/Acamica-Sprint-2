@@ -1,10 +1,11 @@
-const { Router } = require("express");
+/*const { Router } = require("express");
 const router = Router();
 const { productos, Producto } = require("../info.js/productos.js");
 const { usuarios, Usuario } = require("../info.js/users.js");
 
 //carga de middlewares
 const { is_login_usuario, es_admin, existe_producto } = require("./middleware");
+*/
 
 /**
  * @swagger
@@ -25,9 +26,9 @@ const { is_login_usuario, es_admin, existe_producto } = require("./middleware");
  *       200:
  *         description: Listado de productos
  */
-router.get("/", is_login_usuario, (req, res) => {
+/*router.get("/", is_login_usuario, (req, res) => {
   res.json({ Productos: productos });
-});
+});*/
 
 /**
  * @swagger
@@ -85,11 +86,11 @@ router.get("/", is_login_usuario, (req, res) => {
  *       description: Producto no creado
  *
  */
-router.post("/", is_login_usuario, es_admin, (req, res) => {
+/*router.post("/", is_login_usuario, es_admin, (req, res) => {
   producto_nuevo = req.body;
   productos.push(producto_nuevo);
   res.json({ "Producto creado": producto_nuevo });
-});
+});*/
 
 /**
  * @swagger
@@ -150,7 +151,7 @@ router.post("/", is_login_usuario, es_admin, (req, res) => {
  *       description: Listado de productos actualizado
  *
  */
-router.put("/", is_login_usuario, es_admin, (req, res) => {
+/*router.put("/", is_login_usuario, es_admin, (req, res) => {
   let indice = req.body.indice;
   productos[indice].codigo = req.body.codigo;
   productos[indice].nombre = req.body.nombre;
@@ -158,7 +159,7 @@ router.put("/", is_login_usuario, es_admin, (req, res) => {
   productos[indice].precioVenta = req.body.precioVenta;
   productos[indice].stock = req.body.stock;
   res.json({ Productos: productos });
-});
+});*/
 
 /**
  * @swagger
@@ -186,10 +187,11 @@ router.put("/", is_login_usuario, es_admin, (req, res) => {
  *       400:
  *        description: sin stock.
  */
-router.delete("/", is_login_usuario, es_admin, existe_producto, (req, res) => {
+/*router.delete("/", is_login_usuario, es_admin, existe_producto, (req, res) => {
   let indice = req.body.indice;
   productos.splice(indice, 1);
   res.json({ Productos: productos });
-});
+});*/
 
-module.exports = router;
+//module.exports = router;
+

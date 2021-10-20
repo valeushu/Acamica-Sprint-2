@@ -1,4 +1,4 @@
-const { Router } = require("express");
+/*const { Router } = require("express");
 const router = Router();
 
 const { usuarios } = require("../info.js/users.js");
@@ -7,7 +7,7 @@ const {
   existe_usuario,
   is_login_usuario,
   es_admin,
-} = require("./middleware");
+} = require("./middleware");*/
 
 /**
  * @swagger
@@ -28,9 +28,9 @@ const {
  *       200:
  *         description: Listado de usuarios
  */
-router.get("/", is_login_usuario, es_admin, (req, res) => {
+/*router.get("/", is_login_usuario, es_admin, (req, res) => {
   res.json({ Usuarios: usuarios });
-});
+});*/
 
 /**
  * @swagger
@@ -86,14 +86,14 @@ router.get("/", is_login_usuario, es_admin, (req, res) => {
  *       description: Usuario no registrado
  *
  */
-router.post("/registro", nuevo_usuario, (req, res) => {
+/*router.post("/registro", nuevo_usuario, (req, res) => {
   const usuario = req.body;
   console.log(usuario);
   const id = usuarios.length + 1;
   const usuarioNuevo = { ...req.body, id };
   usuarios.push(usuarioNuevo);
   res.json({ Usuarios: usuarios });
-});
+});*/
 
 /**
  * @swagger
@@ -128,9 +128,9 @@ router.post("/registro", nuevo_usuario, (req, res) => {
  *      404:
  *       description: Usuario no encontrado (nombre de usuario y/o contraseña incorrecta)
  */
-router.post("/login", existe_usuario, function (req, res) {
+/*router.post("/login", existe_usuario, function (req, res) {
   console.log("Login OK: ", req.usuarioIndex);
   res.json({ index: req.usuarioIndex });
 });
 
-module.exports = router;
+module.exports = router;*/

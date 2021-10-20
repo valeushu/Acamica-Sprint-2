@@ -1,4 +1,4 @@
-const { Router } = require("express");
+/*const { Router } = require("express");
 const router = Router();
 
 const { usuarios, Usuario } = require("../info.js/users.js");
@@ -10,7 +10,7 @@ const {
   existe_producto,
   existe_pedido,
   valida_metodo_pago,
-} = require("./middleware.js");
+} = require("./middleware.js");*/
 
 /**
  * @swagger
@@ -31,9 +31,9 @@ const {
  *       200:
  *         description: Listado de pedidos
  */
-router.get("/", is_login_usuario, es_admin, (req, res) => {
+/*router.get("/", is_login_usuario, es_admin, (req, res) => {
   res.json({ Pedidos: pedidos });
-});
+});*/
 
 /**
  * @swagger
@@ -71,7 +71,7 @@ router.get("/", is_login_usuario, es_admin, (req, res) => {
  *       200:
  *         description: pedido agregado
  */
-router.post("/", is_login_usuario, valida_metodo_pago, function (req, res) {
+/*router.post("/", is_login_usuario, valida_metodo_pago, function (req, res) {
   let { direccionEnvio, metodoPago } = req.body;
   usuario = req.usuario;
   direccionEnvio = direccionEnvio || usuario.direccionEnvio;
@@ -79,7 +79,7 @@ router.post("/", is_login_usuario, valida_metodo_pago, function (req, res) {
   pedido_nuevo.setDirEnvio(direccionEnvio);
   addPedido(pedido_nuevo);
   res.json({ "Pedido nuevo": pedido_nuevo });
-});
+});*/
 
 /**
  * @swagger
@@ -117,7 +117,7 @@ router.post("/", is_login_usuario, valida_metodo_pago, function (req, res) {
  *       200:
  *         description: producto agregado correctamente
  */
-router.post("/productos", is_login_usuario, existe_producto, (req, res) => {
+/*router.post("/productos", is_login_usuario, existe_producto, (req, res) => {
   const { indicePedido, indiceProducto } = req.body;
   producto = productos[indiceProducto];
   pedidoUsuario = pedidos[indicePedido];
@@ -133,7 +133,7 @@ router.post("/productos", is_login_usuario, existe_producto, (req, res) => {
       "Producto agregado correctamente. El pedido sale: " +
       pedidoUsuario.montoTotal,
   });
-});
+});*/
 
 /**
  * @swagger
@@ -172,7 +172,7 @@ router.post("/productos", is_login_usuario, existe_producto, (req, res) => {
  *        description: medios de pago eliminado correctamente.
  */
 
-router.delete("/productos", is_login_usuario, existe_pedido, (req, res) => {
+/*router.delete("/productos", is_login_usuario, existe_pedido, (req, res) => {
   const { indicePedido, indiceProducto } = req.body;
   producto = pedidos[indicePedido].productos[indiceProducto];
   pedidoUsuario = pedidos[indicePedido];
@@ -189,7 +189,7 @@ router.delete("/productos", is_login_usuario, existe_pedido, (req, res) => {
   } else {
     res.send("producto no encontrado");
   }
-});
+});*/
 
 /**
  * @swagger
@@ -210,13 +210,13 @@ router.delete("/productos", is_login_usuario, existe_pedido, (req, res) => {
  *       200:
  *         description: Listado de pedidos del usuario
  */
-router.get("/usuario", is_login_usuario, function (req, res) {
+/*router.get("/usuario", is_login_usuario, function (req, res) {
   pedidosUsuario = pedidos.filter(
     (p) => req.usuario.admin || p.usuario == req.usuario.nombre_usuario
   );
   console.log(pedidosUsuario);
   res.json({ "Pedidos realizados": pedidosUsuario });
-});
+});*/
 
 /**
  * @swagger
@@ -256,7 +256,7 @@ router.get("/usuario", is_login_usuario, function (req, res) {
  *      201:
  *       description: pedido modificado
  */
-router.put("/estado", is_login_usuario, es_admin, (req, res) => {
+/*router.put("/estado", is_login_usuario, es_admin, (req, res) => {
   let indice_pedido = req.body.indicePedido;
   let estado_nuevo = req.body.estado;
   let pedido_buscado = pedidos[indice_pedido];
@@ -264,4 +264,4 @@ router.put("/estado", is_login_usuario, es_admin, (req, res) => {
   res.json({ "Pedido modificado": pedido_buscado });
 });
 
-module.exports = router;
+module.exports = router;*/

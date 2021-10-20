@@ -1,4 +1,4 @@
-const { productos } = require("./productos");
+/*const { productos } = require("./productos");
 let usuarios = [];
 
 class Usuario {
@@ -51,4 +51,4 @@ let usuario2 = new Usuario(
 
 usuarios = [admin, usuario1, usuario2];
 
-module.exports = { usuarios, Usuario };
+module.exports = { usuarios, Usuario };*/

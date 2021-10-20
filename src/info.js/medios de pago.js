@@ -1,4 +1,4 @@
-let mediosDePago = [];
+/*let mediosDePago = [];
 
 class MediosDePago {
   constructor(codigo, nombre) {
@@ -14,4 +14,4 @@ mediosDePago = [
   new MediosDePago("MP", "MercadoPago"),
 ];
 
-module.exports = { mediosDePago, MediosDePago };
+module.exports = { mediosDePago, MediosDePago };*/
