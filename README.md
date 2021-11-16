@@ -6,7 +6,7 @@ Delilah Restó, desea tener una API para gestionar todos los pedidos del restaur
 
 1. Crear carpeta para su instalación
 2. Ingresar a la carpeta creada y desde la consola ejecutar:
-   `git clone https://github.com/valeushu/Acamica-Sprint-1.git`
+   `git clone https://github.com/valeushu/Acamica-Sprint-2.git`
 3. Ingresar a la carpeta aca-sprint1-project.
 4. Ejecutar `npm install`.
 5. Copiar el archivo .env.example a .env
