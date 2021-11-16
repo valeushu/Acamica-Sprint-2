@@ -1,0 +1,605 @@
+{
+	"info": {
+		"_postman_id": "19f2b913-c30b-4319-9151-6637324770f6",
+		"name": "Delilah persistente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "/api/auth/signup",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user5\",\r\n    \"fullname\": \"user5\",\r\n    \"email\": \"user5@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"phone\": 252144,\r\n    \"address\": \"maipu 717\"\r\n    \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNzQ1OTNkMThlMzA3NzJjMTQ1ZWQ0MyIsImlhdCI6MTYzNTAxNTUwOSwiZXhwIjoxNjM1MTAxOTA5fQ.dsVx_EMA9FpmX6j_C0MC_0V89FHR83lfvljogJUOTX4",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin1@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI2ZWFjYWE1N2QyZDdkNDY3Njg4NyIsImlhdCI6MTYzNjk4NjU3NCwiZXhwIjoxNjM3MDcyOTc0fQ.nmi0mG5iqLzExsVTxZqs8tpCRjP5oFGSQg5muN2aavA",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "<token>",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/auth/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "/api/users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNzQ1OTNkMThlMzA3NzJjMTQ1ZWQ0MyIsImlhdCI6MTYzNTAxNTUwOSwiZXhwIjoxNjM1MTAxOTA5fQ.dsVx_EMA9FpmX6j_C0MC_0V89FHR83lfvljogJUOTX4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"pepe\",\r\n    \"email\":\"pepen@gmail.com\",\r\n    \"roles\":[\"user\"]\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNjk5Mzk5NiwiZXhwIjoxNjM3MDgwMzk2fQ.femHQszso94VXqp11wsP12v5gOJWaihayXKHfC7hz0w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/userId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI2ZWFjYWE1N2QyZDdkNDY3Njg4NyIsImlhdCI6MTYzNjk4NjU3NCwiZXhwIjoxNjM3MDcyOTc0fQ.nmi0mG5iqLzExsVTxZqs8tpCRjP5oFGSQg5muN2aavA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/users/618ec7630cdec564eb0751c0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"users",
+								"618ec7630cdec564eb0751c0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "/api/products",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNzAwNTkxNiwiZXhwIjoxNjM3MDkyMzE2fQ.8n42pMsmkA2TCSCpzSy4AwGJDNzsHWmD88s0CBiOE0U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Sandwich focaccia\",\r\n    \"description\": \"pan focaccia, tomate, jamon y quesa\",\r\n    \"price\": 440,\r\n    \"imgUrl\": \"https://pixelstore.com.ar/wp-content/uploads/2020/07/sanfocaccia.jpg\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products/productId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/products/61746334627287c4a3043a70",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"products",
+								"61746334627287c4a3043a70"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products/productId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNzAwNTQ4NywiZXhwIjoxNjM3MDkxODg3fQ.AAtJJ4FajEsoqLrh-191dKHVeRQlHV179XevgBfIttw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Bagel de salmon\",\r\n    \"description\": \"pan tipo bagel, salmon, rucula, ceaser y aceitunas\",\r\n    \"price\": 425,\r\n    \"imgUrl\": \"https://pixelstore.com.ar/bagel.jpg\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/products/618d5b2090f935d4edb7e0cd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"products",
+								"618d5b2090f935d4edb7e0cd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products/productId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNjk5NDkxMCwiZXhwIjoxNjM3MDgxMzEwfQ.DOxOCHsvjQnMl69yWIEBkLJzUUTfNnxJ5frKsgv2GtU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/products/618d58fc0e95d5fb51ec141f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"products",
+								"618d58fc0e95d5fb51ec141f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "/api/orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNzAwNTkxNiwiZXhwIjoxNjM3MDkyMzE2fQ.8n42pMsmkA2TCSCpzSy4AwGJDNzsHWmD88s0CBiOE0U",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/orders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \"idUser\" : \"619272a7aa57d2d7d4676919\",\r\n    \"products\": [\r\n        {\r\n            \"idProduct\": \"618d5b2090f935d4edb7e0cd\",\r\n            \"amount\": 2\r\n        },\r\n        {\r\n            \"idProduct\": \"6192baef617489a572f391bb\",\r\n            \"amount\": 2\r\n        }\r\n    ]\r\n   \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/orders/orderId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNjk5NDkxMCwiZXhwIjoxNjM3MDgxMzEwfQ.DOxOCHsvjQnMl69yWIEBkLJzUUTfNnxJ5frKsgv2GtU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/orders/618eb687a14f1631b01a8511",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"orders",
+								"618eb687a14f1631b01a8511"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment methods",
+			"item": [
+				{
+					"name": "/api/payMeth",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNzAwOTczMywiZXhwIjoxNjM3MDk2MTMzfQ.FXr57RldFJDfOYLlWp4Xu8GztPFej_pYaDt5uHRQHn0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"payment\" : \"debito\",\r\n    \"deleted\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/payMeth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"payMeth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/payMeth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNzAwOTczMywiZXhwIjoxNjM3MDk2MTMzfQ.FXr57RldFJDfOYLlWp4Xu8GztPFej_pYaDt5uHRQHn0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/payMeth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"payMeth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/payMeth",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNzAwOTczMywiZXhwIjoxNjM3MDk2MTMzfQ.FXr57RldFJDfOYLlWp4Xu8GztPFej_pYaDt5uHRQHn0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/payMeth/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"payMeth",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/payMeth",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTI3MzY1ODdmZTViMWVmNGM2ZDc2YiIsImlhdCI6MTYzNzAwOTczMywiZXhwIjoxNjM3MDk2MTMzfQ.FXr57RldFJDfOYLlWp4Xu8GztPFej_pYaDt5uHRQHn0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7000/api/payMeth/6192c9576e4597b5e5d0c7a0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"payMeth",
+								"6192c9576e4597b5e5d0c7a0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
