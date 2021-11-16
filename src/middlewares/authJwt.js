@@ -1,24 +1,26 @@
 import jwt from "jsonwebtoken";
-import config from "../config.js";
+//import config from "../config.js";
 import User from "../models/user.js";
 import Role from "../models/role.js";
 
 export const verifyToken = async (req, res, next) => {
   try {
-    const token = req.headers["x-access-token"];
-    //console.log(token)
-
-    if (!token) return res.status(403).json({ message: "no token provided" });
-    const decoded = jwt.verify(token, config.SECRET);
+    let token = req.header("Authorization");
+    console.log(token)
+    if (!token) return res.status(403).json({ status: "no token provided" });
+    token = token.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.SECRET);
     req.userId = decoded.id;
-
+ 
     const user = await User.findById(req.userId, { password: 0 });
     console.log(user);
-    if (!user) return res.status(404).json({ message: "no user found" });
-
+    req.dataUser = user;
+    if (!user) return res.status(404).json({ status: "no user found" });
+    req.token = token
     next();
   } catch (error) {
-    return res.status(401).json({ message: "Unauthorized" });
+    console.log(error)
+    return res.status(401).json({ status: "unauthorized" });
   }
 };
 export const isAdmin = async (req, res, next) => {

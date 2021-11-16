@@ -6,13 +6,16 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
+      required:true,
       unique: true,
     },
     fullname: {
       type: String,
+      required:true
     },
     email: {
       type: String,
+      required: true,
       unique: true,
     },
     password: {
@@ -21,10 +24,11 @@ const userSchema = new Schema(
     },
     phone: {
       type: Number,
-      unique: true,
+      required: true,
     },
-    adress: {
+    address: {
       type: String,
+      required: true,
     },
     roles: [
       {

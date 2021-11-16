@@ -3,11 +3,11 @@ const { Schema, model } = mon;
 
 const productSchema = new Schema(
   {
-    name: String,
+    name: { type: String, required: true},
     description: String,
-    price: Number,
+    price: {type: Number, required: true },
     imgUrl: String,
-    stock: Number,
+    //stock: Number,
   },
   {
     timestamps: true,
